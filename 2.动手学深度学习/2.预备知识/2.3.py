@@ -1,0 +1,40 @@
+import torch
+
+x = torch.tensor(3.0)
+y = torch.tensor(2.0)
+
+print((x + y, x * y, x / y, x ** y))
+
+A = torch.arange(20, dtype=torch.float32).reshape(5, 4)
+B = A.clone()
+print(A, A + B)
+print(A * B)
+x = torch.arange(4, dtype=torch.float32)
+print(x, x.sum())
+A_sum_axis0 = A.sum(dim=0)
+print(A_sum_axis0, A_sum_axis0.shape)
+print(A.sum(dim=[0, 1]))
+print(A.mean(), A.sum() / A.numel())
+sum_A = A.sum(1, True)
+print(sum_A)
+print(A / sum_A)
+print("--------")
+print(A)
+# axis = 0按照行，可以理解为把“行”给抹去只剩1行，也就是上下压扁。
+# axis = 1按照列，可以理解为把“列”给抹去只剩1列，也就是左右压扁。
+print(A.cumsum(axis=0))
+y = torch.ones(4, dtype=torch.float32)
+print(torch.dot(x, y))
+# 按元素相乘
+torch.sum(x * y)
+print("----")
+print(x)
+print(A)
+print(torch.mv(A, x))
+B = torch.ones(4, 3)
+print(torch.mm(A, B))
+u = torch.tensor([3., -4.])
+print(torch.norm(u))
+print(torch.abs(u).sum())
+print(torch.norm(torch.ones(4, 9)))
+print(A.T.T == A)
